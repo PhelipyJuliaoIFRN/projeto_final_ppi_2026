@@ -1,0 +1,36 @@
+<!-- Container principal da listagem de livros -->
+<section class="books-list-container">
+  <!-- Cabeçalho da página de acervo -->
+  <header class="list-header">
+    <h1>Acervo de <span class="highlight">Livros</span></h1>
+    <p>Confira todos os livros cadastrados na biblioteca.</p>
+  </header>
+
+  <!-- Grid contendo os cards dos livros -->
+  <div class="books-grid">
+    {{#each books}}
+      <!-- Card individual de livro -->
+      <article class="book-card">
+        <div class="book-card-header">
+          <span class="book-id">#{{this.id}}</span>
+        </div>
+        <div class="book-card-body">
+          <h2 class="book-title">{{this.title}}</h2>
+          <p class="book-pages">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            {{this.pageqty}} páginas
+          </p>
+        </div>
+      </article>
+    {{else}}
+      <!-- Mensagem exibida caso a lista de livros esteja vazia -->
+      <div class="empty-list">
+        <p>Nenhum livro foi cadastrado ainda.</p>
+        <a href="/books/add" class="btn-primary">Cadastrar o primeiro livro</a>
+      </div>
+    {{/each}}
+  </div>
+</section>
