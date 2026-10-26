@@ -1,32 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
+    <!-- Configuração do conjunto de carateres e responsividade -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../public/css/style.css">
+    
+    <!-- Título dinâmico enviado pela rota do Express (com valor padrão) -->
+    <title>{{#if title}}{{title}} - Sistema de Livros{{else}}Sistema de Livros{{/if}}</title>
+    
+    <!-- Estilo CSS principal (que importa todos os outros módulos CSS) -->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header>
-        <div><a href=""><img src="" alt=""></a></div>
-        <div>
-            <nav>
-                <ul class="navigation">
-                    <li><a href="">home</a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href="">Sobre nós</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div>
-            
-        </div>
-    </header>
-    {{{body}}}
-    <footer>
 
+    <!-- Cabeçalho fixo da aplicação (Logótipo e Navegação) -->
+    <header class="main-header">
+        <!-- Logótipo da aplicação -->
+        <div class="logo">
+            <a href="/">
+                <img src="/images/logo.png" alt="Logo do Sistema">
+            </a>
+        </div>
+
+        <!-- Menu de navegação principal -->
+        <nav aria-label="Navegação Principal">
+            <ul class="navigation">
+                <li><a href="/">Home</a></li>
+                <li><a href="/books/add">Cadastrar Livro</a></li>
+                <li><a href="/books">Acervo</a></li>
+                <li><a href="/about">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo dinâmico da página (onde o Handlebars injeta as views) -->
+    <main class="main-content">
+        {{{body}}}
+    </main>
+
+    <!-- Rodapé fixo na parte inferior (Sticky Footer) -->
+    <footer class="main-footer">
+        <p>&copy; {{#if year}}{{year}}{{else}}2026{{/if}} Sistema de Livros. Todos os direitos reservados.</p>
     </footer>
+
 </body>
 </html>
