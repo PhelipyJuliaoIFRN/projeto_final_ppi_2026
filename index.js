@@ -77,6 +77,29 @@ app.get('/books/add/successful', (req, res) => {
     res.render('booksSuccessful')
 })
 
+// Rota GET ('/books/list'): Busca todos os registros da tabela de livros no banco de dados e os exibe em uma view.
+app.get('/books/list', (req, res) => {
+    // Define a instrução SQL para selecionar todas as colunas e registros da tabela 'Books'
+    const sql = 'SELECT * FROM Books'
+
+    // Executa a consulta no banco de dados de forma assíncrona.
+    // O callback recebe 'err' (se houver erro) e 'data' (o array com os registros retornados).
+    conn.query(sql, (err, data) => {
+        if (err) {
+            // Exibe qualquer falha na execução da query no terminal para depuração
+            console.log(err)
+            return
+        }
+
+        // Armazena a lista de livros retornada do MySQL em uma variável
+        const books = data
+
+        // Renderiza a view 'booksList.handlebars', enviando o array de livros como contexto
+        // para que possa ser percorrido e exibido dinamicamente no HTML (ex: usando #each do Handlebars)
+        res.render('booksList', { books })
+    })
+})
+
 // Define as credenciais e parâmetros de conexão com a instância do banco de dados MySQL.
 const conn = mysql.createConnection({
     host: 'localhost',
